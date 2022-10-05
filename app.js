@@ -7,13 +7,11 @@ const cors = require("cors")
 const indexRouter = require("./routes/index")
 const usersRouter = require("./routes/users")
 
+const BASE_URL = process.env.BASE_URL
+
 const app = express()
 
-app.use(
-  cors({
-    origin: "https://fancy-biscotti-4efe01.netlify.app",
-  })
-)
+app.use(cors({ origin: BASE_URL }))
 app.use(logger("dev"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
