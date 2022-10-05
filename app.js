@@ -9,7 +9,11 @@ const usersRouter = require("./routes/users")
 
 const app = express()
 
-app.use(cors())
+app.use(
+  cors({
+    origin: "https://fancy-biscotti-4efe01.netlify.app",
+  })
+)
 app.use(logger("dev"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
