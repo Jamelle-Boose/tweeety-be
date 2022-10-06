@@ -23,4 +23,14 @@ app.get("/", async (req, res) => {
   }
 })
 
+app.get("/rules", async (req, res) => {
+  try {
+    const client = new Client(process.env.BEARER_TOKEN)
+    const getStreamRules = await client.tweets.getRules()
+    res.status(200).json(getStreamRules)
+  } catch (e) {
+    console.error(e)
+  }
+})
+
 module.exports = app
