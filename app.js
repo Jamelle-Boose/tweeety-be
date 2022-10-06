@@ -1,4 +1,5 @@
 require("dotenv").config()
+
 const express = require("express")
 const cookieParser = require("cookie-parser")
 const logger = require("morgan")
@@ -13,8 +14,9 @@ app.use(logger("dev"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
-app.use("/", require("./routes"))
 
-app.get("/", (_, res) => res.status(200).json({ status: "OK" }))
+app.use("/api", require("./api"))
+
+app.get("/", (_, res) => res.sendStatus(200))
 
 module.exports = app
