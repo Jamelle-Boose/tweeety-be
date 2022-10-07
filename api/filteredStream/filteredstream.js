@@ -33,4 +33,15 @@ app.get("/rules", async (req, res) => {
   }
 })
 
+app.post("/rules", async (req, res) => {
+  try {
+    const rule = req.body
+    const client = new Client(process.env.BEARER_TOKEN)
+    const addOrDelete = await client.tweets.addOrDeleteRules(rule)
+    res.status(200).json(addOrDelete)
+  } catch (e) {
+    console.error(e)
+  }
+})
+
 module.exports = app
